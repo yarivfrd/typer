@@ -1,0 +1,255 @@
+@font-face {
+    font-family: "PixelMix";
+    src: url("fonts/pixelmix.ttf") format("truetype");
+    font-weight: normal;
+}
+
+body {
+	height: 100vh;
+    font-family: 'PixelMix';
+    margin: 0;
+    box-sizing: border-box;
+}
+
+main {
+    position: relative;
+	height: 100%;
+    background-color: white;
+}
+
+main[data-shenanigen='true'] {
+    animation: rotate 45s linear infinite forwards;
+}
+
+.container {
+    position: absolute;
+    top: 150px;
+    left: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 350px;
+    width: 100%;
+    transform: translateX(-50%);
+}
+
+
+.start-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: white;
+}
+
+.title {
+    font-size: 32px;
+}
+
+.instructions {
+    text-align: center;
+    line-height: 1.3;
+}
+
+.start-btn {
+    font-family: inherit;
+    font-size: inherit;
+    background-color: #000;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.credits {
+    font-size: 8px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.link {
+    color: #000;
+}
+
+.scoreboard {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    right: 0;
+    font-weight: bold;
+    text-align: center;
+}
+
+.scoreboard[data-shenanigen='true'] {
+    animation: bounce 0.4s ease infinite forwards;
+}
+
+.word-slot {
+    font-size: 32px;
+    margin: 30px 0;
+}
+
+.word-slot[data-shenanigen='true'] .char:nth-child(odd) {
+    animation: bounce-reverse 0.4s ease infinite forwards;
+}
+
+.word-slot[data-shenanigen='true'] .char:nth-child(even) {
+    animation: bounce 0.4s ease infinite forwards;
+}
+
+.char,
+.digit {
+    display: inline-block;
+    padding: 10px;
+    margin-right: 5px;
+    border: solid 3px #000;
+    text-align: center;
+}
+
+.char:last-child,
+.digit:last-child {
+    margin-right: 0;
+}
+
+.char.retry {
+    line-height: 1;
+    margin-right: 5px;
+}
+
+.digits-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+}
+
+.digits {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.digits[data-shenanigen='true'] .digit:nth-of-type(2) {
+    animation: spread 0.4s ease infinite forwards;
+}
+
+.time-bar {
+    display: flex;
+    height: 30px;
+}
+
+.fill-container {
+    flex-grow: 1;
+}
+
+.time-bar .fill {
+    height: 100%;
+    background-color: #000;
+}
+
+.fill-barrier {
+    display: inline-block;
+    height: 100%;
+    opacity: 1;
+    background-size: 6px 6px;
+    background-image: repeating-linear-gradient(45deg, #000000 0, #000000 0.6000000000000001px, #ffffff 0, #ffffff 50%);
+}
+
+.matched {
+    color: white;
+    background-color: #000;
+    transform: translateY(-5px);
+    transition: transform .1s ease;
+}
+
+.end-message {
+    line-height: 1.6;
+    text-align: center;
+}
+
+.carlton {
+    image-rendering: pixelated;
+    height: 180px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform: translateX(-100%);
+}
+
+.carlton.dance {
+    animation: slide 30s linear infinite forwards;
+}
+
+@keyframes drain {
+    0% {
+        width: 100%;
+    }
+    100% {
+        width: 0;
+    }
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+    
+    50% {
+        transform: translateY(-10px);
+    }
+    
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce-reverse {
+    0% {
+        transform: translateY(0);
+    }
+    
+    50% {
+        transform: translateY(10px);
+    }
+    
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes spread {
+    0% {
+        margin: 0 5px 0 0;
+    }
+    50% {
+        margin: 0 20px 0 15px;
+    }
+    100% {
+        margin: 0 5px 0 0;
+    }
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes slide {
+    0% {}
+    50% {
+        transform: translateX(100vw);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
