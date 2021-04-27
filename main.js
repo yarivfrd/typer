@@ -932,6 +932,7 @@ function mountDigits() {
 }
 
 function handleKeypress(e) {
+    console.log(e);
     if (/^[a-zA-Z0-9]{1}$/.test(e.key)) {
         checkMatch(e.key);
     }
