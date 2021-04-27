@@ -1091,3 +1091,5 @@ window.addEventListener('DOMContentLoaded', () => {
         initGame();
     });
 });
+
+document.querySelector('input').addEventListener('input', e => console.log(e));
