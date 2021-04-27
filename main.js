@@ -1081,6 +1081,7 @@ function handleReset(e) {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
+    document.querySelector('input').click();
     initAudio();
     startButton.addEventListener('click', () => {
         document.querySelector('.start-screen').remove();
