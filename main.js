@@ -1081,10 +1081,11 @@ function handleReset(e) {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-    document.querySelector('input').focus();
-    document.querySelector('input').click();
+    
     initAudio();
     startButton.addEventListener('click', () => {
+        document.querySelector('input').focus();
+        document.querySelector('input').click();
         document.querySelector('.start-screen').remove();
         initGame();
     });
