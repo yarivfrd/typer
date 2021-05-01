@@ -871,7 +871,7 @@ function initGame() {
     mountDigits();
     refillTimeBar();
     timeBarFill.addEventListener("animationend", () => gameOver('loss'));
-    document.addEventListener("keyup", handleKeypress);
+    enableInput();
 }
 
 function shuffleArray(arr) {
@@ -931,10 +931,10 @@ function mountDigits() {
     digitsSlot.innerHTML = digits;
 }
 
-function handleKeypress(e) {
-    console.log(e);
-    if (/^[a-zA-Z0-9]{1}$/.test(e.key)) {
-        checkMatch(e.key);
+function handleInput(key) {
+    console.log(key);
+    if (/^[a-zA-Z0-9]{1}$/.test(key)) {
+        checkMatch(key);
     }
 }
 
@@ -1039,7 +1039,7 @@ function resetPenalties() {
 }
 
 function gameOver(result) {
-    document.removeEventListener('keyup', handleKeypress);
+    disableInput();
     timeBarFill.style.setProperty('animation', '');
     stopSound('music');
     stopSound('musicAlt');
@@ -1076,13 +1076,40 @@ function resetGame() {
 
 function handleReset(e) {
     if (e.key === 'r') {
-        document.removeEventListener('keyup', handleReset);
+        disableInput();
         resetGame();
     }
 }
 
+function isTouchDevice() {
+    return (('ontouchstart' in window) ||
+        (navigator.maxTouchPoints > 0) ||
+        (navigator.msMaxTouchPoints > 0));
+}
+
+function handleInputCallback(e) {
+    const key = e.key ? e.key : e.data;
+    handleInput(key);
+}
+
+function enableInput() {
+    if (isTouchDevice()) {
+        document.querySelector('input').addEventListener('input', handleInputCallback);
+    } else {
+        document.addEventListener("keyup", handleInputCallback);
+    }
+}
+
+function disableInput() {
+    if (isTouchDevice()) {
+        document.querySelector('input').removeEventListener('input', handleInputCallback);
+    } else {
+        document.removeEventListener("keyup", handleInputCallback);
+    }
+}
+
 window.addEventListener('DOMContentLoaded', () => {
-    
+    console.log(`is touch device: ${isTouchDevice()}`);
     initAudio();
     startButton.addEventListener('click', () => {
         document.querySelector('input').focus();
@@ -1091,5 +1118,3 @@ window.addEventListener('DOMContentLoaded', () => {
         initGame();
     });
 });
-
-document.querySelector('input').addEventListener('input', e => console.log(e));
