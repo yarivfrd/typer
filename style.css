@@ -256,3 +256,17 @@ main[data-shenanigen='true'] {
         transform: translateX(-100%);
     }
 }
+
+@media (max-width: 480px) {
+    .container {
+        top: 0;
+    }
+
+    .word-slot {
+        font-size: 24px;
+    }
+
+    .digits {
+        font-size: 12px;
+    }
+}
