@@ -1075,7 +1075,7 @@ function resetGame() {
 }
 
 function handleReset(e) {
-    if (e.key === 'r') {
+    if (e.key === 'r' || e.data === 'r') {
         disableInput();
         resetGame();
     }
