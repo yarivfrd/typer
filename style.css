@@ -4,6 +4,10 @@
     font-weight: normal;
 }
 
+input {
+    opacity: 0;
+}
+
 body {
 	height: 100vh;
     font-family: 'PixelMix';
