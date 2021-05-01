@@ -5,10 +5,16 @@
 }
 
 input {
+    position: absolute;
+    top: 0;
+    left: 0;
     opacity: 0;
 }
 
 body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 	height: 100vh;
     font-family: 'PixelMix';
     margin: 0;
@@ -16,7 +22,11 @@ body {
 }
 
 main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
+    width: 100%;
 	height: inherit;
     background-color: white;
 }
@@ -26,16 +36,13 @@ main[data-shenanigen='true'] {
 }
 
 .container {
-    position: absolute;
-    top: 150px;
-    left: 50%;
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     height: 350px;
     width: 100%;
-    transform: translateX(-50%);
 }
 
 
@@ -258,8 +265,8 @@ main[data-shenanigen='true'] {
 }
 
 @media (max-width: 480px) {
-    .container {
-        top: 0;
+    main {
+        align-items: flex-start;
     }
 
     .word-slot {
