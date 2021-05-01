@@ -1064,7 +1064,7 @@ function gameOver(result) {
             </div>etry?
         </div>`;
         playSound('gameLose', 0.5);
-        document.addEventListener('keyup', handleReset);
+        enableResetInput();
     }
 }
 
@@ -1072,13 +1072,6 @@ function resetGame() {
     modifyScore(-score);
     resetPenalties();
     initGame();
-}
-
-function handleReset(e) {
-    if (e.key === 'r' || e.data === 'r') {
-        disableInput();
-        resetGame();
-    }
 }
 
 function isTouchDevice() {
@@ -1105,6 +1098,29 @@ function disableInput() {
         document.querySelector('input').removeEventListener('input', handleInputCallback);
     } else {
         document.removeEventListener("keyup", handleInputCallback);
+    }
+}
+
+function handleResetCallback(e) {
+    if (e.key === 'r' || e.data === 'r') {
+        disableResetInput();
+        resetGame();
+    }
+}
+
+function enableResetInput() {
+    if (isTouchDevice()) {
+        document.querySelector('input').addEventListener('input', handleResetCallback);
+    } else {
+        document.addEventListener("keyup", handleResetCallback);
+    }
+}
+
+function disableResetInput() {
+    if (isTouchDevice()) {
+        document.querySelector('input').removeEventListener('input', handleResetCallback);
+    } else {
+        document.removeEventListener("keyup", handleResetCallback);
     }
 }
 
