@@ -231,7 +231,6 @@ function disableResetInput() {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-    console.log(`is touch device: ${isTouchDevice()}`);
     startButton.addEventListener('click', () => {
         document.querySelector('input').focus();
         document.querySelector('input').click();
