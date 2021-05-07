@@ -1,6 +1,7 @@
-import { isTouchDevice, shuffleArray }  from './utils.js';
-import { playSound, stopSound } from './sound.js';
 import words from './words.js';
+import { shuffleArray } from './utils.js';
+import { playSound, stopSound } from './sound.js';
+import { enableInput, disableInput, enableResetInput } from './input.js';
 
 const mainContainer = document.querySelector('main');
 const startButton = document.querySelector('.start-btn');
@@ -44,7 +45,7 @@ function mountDigits() {
     digitsSlot.innerHTML = digits;
 }
 
-function handleInput(key) {
+export function handleInput(key) {
     if (/^[a-zA-Z0-9]{1}$/.test(key)) {
         checkMatch(key);
     }
@@ -180,54 +181,10 @@ function gameOver(result) {
     }
 }
 
-function resetGame() {
+export function resetGame() {
     modifyScore(-score);
     resetPenalties();
     initGame();
-}
-
-function handleInputCallback(e) {
-    const key = e.key ? e.key : e.data;
-    handleInput(key);
-}
-
-function enableInput() {
-    if (isTouchDevice()) {
-        document.querySelector('input').addEventListener('input', handleInputCallback);
-    } else {
-        document.addEventListener("keyup", handleInputCallback);
-    }
-}
-
-function disableInput() {
-    if (isTouchDevice()) {
-        document.querySelector('input').removeEventListener('input', handleInputCallback);
-    } else {
-        document.removeEventListener("keyup", handleInputCallback);
-    }
-}
-
-function handleResetCallback(e) {
-    if (e.key === 'r' || e.data === 'r') {
-        disableResetInput();
-        resetGame();
-    }
-}
-
-function enableResetInput() {
-    if (isTouchDevice()) {
-        document.querySelector('input').addEventListener('input', handleResetCallback);
-    } else {
-        document.addEventListener("keyup", handleResetCallback);
-    }
-}
-
-function disableResetInput() {
-    if (isTouchDevice()) {
-        document.querySelector('input').removeEventListener('input', handleResetCallback);
-    } else {
-        document.removeEventListener("keyup", handleResetCallback);
-    }
 }
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -240,7 +197,6 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 /*
-TODO:
-1. Seperate to modules?
-2. Test on more devices and bugfix.
- */
+    TODO:
+    1. Test on more devices and bugfix.
+*/
